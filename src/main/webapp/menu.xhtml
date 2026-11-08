@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+  <h:form styleClass="menu">
+    <h:link outcome="vitrine" value="Vitrine"/>
+    <h:link outcome="panier" value="Panier (#{panierBean.nombreArticles})" rendered="#{internauteBean.connecte}"/>
+    <span class="spacer"/>
+    <h:panelGroup rendered="#{not internauteBean.connecte}">
+      <h:link outcome="connexion" value="Connexion"/>
+      &#160;
+      <h:link outcome="inscription" value="Inscription"/>
+    </h:panelGroup>
+    <h:panelGroup rendered="#{internauteBean.connecte}">
+      <span class="user">#{internauteBean.connecte.nom}</span>
+      &#160;
+      <h:commandLink action="#{internauteBean.deconnecter}" value="Deconnexion" style="color:#fff"/>
+    </h:panelGroup>
+  </h:form>
+</ui:composition>
